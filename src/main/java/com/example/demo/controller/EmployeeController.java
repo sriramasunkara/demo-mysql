@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
@@ -23,6 +24,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
     @PostMapping("")
+    @PreAuthorize("hasRole('ROLE_ADMIN')" )
     public ResponseEntity<EmployeeVO>  saveEmployee(@Valid @RequestBody EmployeeVO employeeVO){
 
        return ResponseEntity.ok( employeeService.saveEmployee(employeeVO));
