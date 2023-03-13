@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.EmployeeService;
 import com.example.demo.vo.EmployeeVO;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +17,26 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RequestMapping("employee")
+	@CrossOrigin(origins = "*")
+
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
     @PostMapping("")
-    public ResponseEntity<EmployeeVO>  saveEmployee(@RequestBody EmployeeVO employeeVO){
+    public ResponseEntity<EmployeeVO>  saveEmployee(@Valid @RequestBody EmployeeVO employeeVO){
 
        return ResponseEntity.ok( employeeService.saveEmployee(employeeVO));
     }
 
     @PutMapping("")
-    public ResponseEntity<EmployeeVO>  updateEmployee(@RequestBody EmployeeVO employeeVO){
+    public ResponseEntity<EmployeeVO>  updateEmployee(@Valid @RequestBody EmployeeVO employeeVO){
         return ResponseEntity.ok(employeeService.updateEmployee(employeeVO));
     }
 
 
     @PostMapping("/search")
-    public ResponseEntity<List<EmployeeVO>>  search(@RequestBody EmployeeVO employeeVO){
+    public ResponseEntity<List<EmployeeVO>>  search(@Valid
+                                                         @RequestBody EmployeeVO employeeVO){
         return ResponseEntity.ok(employeeService.seachEmployee(employeeVO));
     }
 

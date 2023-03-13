@@ -11,3 +11,11 @@ spring:
   jpa:
     show-sql: true
     database-platform:  org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+demo:
+  app:
+    jwtCookieName: test
+    jwtSecret: testScret
+    jwtExpirationMs: 800000
+
